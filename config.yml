@@ -1,0 +1,28 @@
+# setting database to null (~) prevents the automatic connection to the database
+db_connection:
+    host: localhost
+    user: root
+    pass: ~
+    database: video_watchlist
+
+routing:
+    # This array consists of paths, with named variables in the form ($variable),
+    # and of the corresponding handlers to be called when the path matches.
+    # Optionally, the allowed Request method (GET, POST) can be specified via 'method'
+    #
+    # Paths are handled case-insensitive
+    # The handlers are defined like in PHP code, classes of non-static methods get instantiated automatically
+    routes:
+        -
+            pattern: ''
+            handler: Controller->showIndex
+        -
+            pattern: 'add'
+            handler: Controller->addVideo
+
+    # This array defines the regex to be matched for the variables in the route
+    # Slashes will get escaped, don't do that manually
+    #
+    # Specifying conditions for the variables is optional,
+    # by default variables match everything except slashes ([^/]+)
+    conditions:
