@@ -18,6 +18,7 @@ routing:
             handler: Controller->showIndex
         -
             pattern: 'add'
+            method: POST
             handler: Controller->addVideo
 
     # This array defines the regex to be matched for the variables in the route

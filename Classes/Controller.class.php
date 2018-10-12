@@ -19,32 +19,35 @@ class Controller extends Base
 
     /**
      * @Route '/add'
+     * @Method 'POST'
      */
-    public function addVideo(array $data) {
-        $scraper = new Scraper($_POST['url']);
-        /** @var VideoPageParser $page */
-        // TODO catch exception(s)
-        // TODO check for response code
-        $page = $scraper->parse();
+    public function addVideo() {
+        if (Request::isAjax()) {
+            try {
+                $scraper = new Scraper($_POST['url']);
+                /** @var VideoPageParser $page */
+                // TODO check for response code
+                $page = $scraper->parse();
+            } catch (Exception $e) {
+                Response::setCode(500);
+                Response::json(array(
+                    'error' => $e->getMessage()
+                ));
+            }
 
-//        echo '<pre>';
-//        var_dump([
-//            'url' => $scraper->url,
-//            'title' => $page->getTitle(),
-//            'thumbnail' => $page->getThumbnailUrl()
-//        ]);
-//
-//        echo '<br>' . htmlspecialchars($scraper->html). '</pre>';
-//        exit;
+            $stmt = $this->DB->prepare('INSERT INTO videos (URL, Title, ThumbnailUrl, DateAdded) VALUES (?, ?, ?, ?)');
+            $stmt->execute([
+                $scraper->url,
+                $page->getTitle(),
+                $page->getThumbnailUrl(),
+                (new DateTime())->format('Y-m-d')
+            ]);
 
-        $stmt = $this->DB->prepare('INSERT INTO videos (URL, Title, ThumbnailUrl, DateAdded) VALUES (?, ?, ?, ?)');
-        $stmt->execute([
-            $scraper->url,
-            $page->getTitle(),
-            $page->getThumbnailUrl(),
-            (new DateTime())->format('Y-m-d')
-        ]);
-
-        Response::redirect('');
+            Response::json(array(
+                'url' => $scraper->url,
+                'title' => $page->getTitle(),
+                'thumbnail' => $page->getThumbnailUrl()
+            ));
+        }
     }
 }
