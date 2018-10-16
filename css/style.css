@@ -1,6 +1,61 @@
-body {
-    background: #eee;
+*:focus {
+    outline: none;
 }
+
+body {
+    margin: 1em 1.5em;
+    background-color: #eee;
+    font-family: Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: royalblue;
+}
+
+a:hover {
+    color: cornflowerblue;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+input {
+    padding: 0.3em 0.4em;
+    font-size: 1em;
+    border: 2px solid rgba(0,0,0, 0.2);
+    border-radius: 0.25rem;
+}
+
+input:active,
+input:focus {
+    border-color: rgb(79, 195, 247);
+    box-shadow: 0 0 6px -1px rgba(79, 195, 247, 0.75)
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #03a9f4;
+    font: bold 1em/1 Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+    box-shadow: inset 0 0 2em rgba(0,0,0, 0.25);
+}
+
+.btn:active {
+    box-shadow: inset 0 0 0 1em rgba(0,0,0, 0.25);
+}
+
 
 form {
     display: flex;
@@ -12,27 +67,58 @@ form input {
     flex: 1;
 }
 
+form > *:not(:last-child) {
+    margin-right: 0.2rem;
+}
+
+
+
 main {
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
-    margin: 0 auto;
+    margin: 2em auto 0;
+}
+
+article,
+article img {
+    border-radius: 0.5em;
 }
 
 article {
     flex: 1;
-    min-width: 18.5em;
+    min-width: 18.75em;
     margin: 1em;
     background-color: white;
+    box-shadow: 0 2px 0.4em rgba(0,0,0, 0.1);
+    transition: box-shadow 0.3s, transform 0.4s;
+}
+
+article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 0.8em rgba(0,0,0, 0.25);
+}
+
+article > a {
+    display: inline-block;
+    width: 100%;
+    color: #333;
 }
 
 article img {
     width: 100%;
     background-color: rgba(0,0,0, 0.2);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+article h2 {
+    margin: 0.6em 0.5em 0.8em;
+    font-size: 1.25em;
 }
 
 
-@media (min-width: 800px) {
+@media (min-width: 768px) {
     main {
         width: 80%;
     }
