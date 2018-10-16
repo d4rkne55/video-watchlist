@@ -28,11 +28,6 @@
             </a>
         </article>
         <?php } ?>
-
-        <article>
-            <img src="">
-            <h2></h2>
-        </article>
     </main>
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
