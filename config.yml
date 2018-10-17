@@ -20,6 +20,10 @@ routing:
             pattern: 'add'
             method: POST
             handler: Controller->addVideo
+        -
+            pattern: 'delete'
+            method: POST
+            handler: Controller->deleteVideo
 
     # This array defines the regex to be matched for the variables in the route
     # Slashes will get escaped, don't do that manually

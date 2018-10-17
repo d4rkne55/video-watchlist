@@ -22,6 +22,7 @@
             }
         ?>
         <article>
+            <button class="delete" title="Remove">&#10005;</button>
             <a href="<?= $video['URL'] ?>" target="_blank">
                 <img src="<?= $thumbnailUrl ?>">
                 <h2><?= $video['Title'] ?></h2>

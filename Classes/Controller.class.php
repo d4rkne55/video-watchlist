@@ -50,4 +50,20 @@ class Controller extends Base
             ));
         }
     }
+
+    /**
+     * @Route '/delete'
+     * @Method 'POST'
+     */
+    public function deleteVideo() {
+        if (Request::isAjax()) {
+            $stmt = $this->DB->prepare('DELETE FROM videos WHERE URL = ?');
+
+            if ($stmt->execute([$_POST['url']])) {
+                Response::json(true);
+            } else {
+                Response::json(false);
+            }
+        }
+    }
 }

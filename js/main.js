@@ -15,5 +15,17 @@ $(document).ready(function() {
 
             console.log(error);
         });
-    })
+    });
+
+    $('article .delete').click(function(e) {
+        if (e.button == 0) {
+            var video = $(this.parentNode);
+
+            $.post(location.pathname + 'delete', { url: this.nextElementSibling.href }, function(response) {
+                if (response) {
+                    video.remove();
+                }
+            }, 'json')
+        }
+    });
 })

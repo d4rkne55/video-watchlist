@@ -88,6 +88,7 @@ article img {
 }
 
 article {
+    position: relative;
     background-color: white;
     box-shadow: 0 2px 0.4em rgba(0,0,0, 0.1);
     transition: box-shadow 0.3s, transform 0.4s;
@@ -102,6 +103,32 @@ article > a {
     display: inline-block;
     width: 100%;
     color: #333;
+}
+
+article .delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: inline-block;
+    width: 1.6em;
+    height: 1.6em;
+    padding: 0;
+    background-color: rgba(255,255,255, 0.2);
+    font-size: 0.875em;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1.6em;
+    color: hsl(0, 0%, 60%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+article .delete:hover {
+    background-color: rgba(255,255,255, 0.35);
+    font-weight: normal;
+    color: #ef5350;
+    text-shadow: 0 0 2px #333;
 }
 
 article img {
