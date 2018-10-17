@@ -26,9 +26,13 @@ class Controller extends Base
             try {
                 $scraper = new Scraper($_POST['url']);
                 /** @var VideoPageParser $page */
-                // TODO check for response code
                 $page = $scraper->parse();
             } catch (Exception $e) {
+                if ($e->getCode() != 0) {
+                    Response::setCode($e->getCode());
+                    exit;
+                }
+
                 Response::setCode(500);
                 Response::json(array(
                     'error' => $e->getMessage()

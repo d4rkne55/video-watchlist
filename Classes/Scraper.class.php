@@ -25,8 +25,16 @@ class Scraper
                 throw new Exception('Unsupported domain given. No parser available.');
         }
 
-        // TODO switch to curl and get response code
-        $this->html = file_get_contents($this->url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $this->url);
+
+        $this->html = curl_exec($ch);
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if ($statusCode >= 400) {
+            throw new RuntimeException('', $statusCode);
+        }
     }
 
     public function parse() {
