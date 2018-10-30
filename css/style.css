@@ -138,10 +138,10 @@ article .delete {
 }
 
 article .delete:hover {
-    background-color: rgba(255,255,255, 0.35);
+    background-color: hsla(0, 0%, 87.5%, 0.5);
     font-weight: normal;
-    color: #ef5350;
-    text-shadow: 0 0 2px #333;
+    color: #f44336;
+    text-shadow: 0 0 2px rgba(0,0,0, 0.5);
 }
 
 article .img-area {
