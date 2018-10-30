@@ -56,6 +56,18 @@ input:focus {
     box-shadow: inset 0 0 0 1em rgba(0,0,0, 0.25);
 }
 
+.ar-4-3::before {
+    content: '';
+    float: left;
+    padding-bottom: calc(3/4 * 100%);
+}
+
+.ar-4-3::after {
+    content: '';
+    /*display: table;*/
+    clear: both;
+}
+
 
 form {
     display: flex;
@@ -83,7 +95,7 @@ main {
 }
 
 article,
-article img {
+article .img-area {
     border-radius: 0.5em;
 }
 
@@ -122,6 +134,7 @@ article .delete {
     border: none;
     border-radius: 50%;
     cursor: pointer;
+    z-index: 1;
 }
 
 article .delete:hover {
@@ -131,11 +144,24 @@ article .delete:hover {
     text-shadow: 0 0 2px #333;
 }
 
-article img {
-    width: 100%;
+article .img-area {
+    position: relative;
     background-color: rgba(0,0,0, 0.2);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    overflow: hidden;
+}
+
+article img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+article img.placeholder {
+    width: 75%;
 }
 
 article h2 {

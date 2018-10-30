@@ -16,15 +16,19 @@
         <?php
         foreach ($this->videos as $video) {
             $thumbnailUrl = $video['ThumbnailUrl'];
+            $fallback = false;
 
             if (empty($thumbnailUrl)) {
                 $thumbnailUrl = 'https://s.ytimg.com/yts/img/meh7-vflGevej7.png';
+                $fallback = true;
             }
         ?>
         <article>
             <button class="delete" title="Remove">&#10005;</button>
             <a href="<?= $video['URL'] ?>" target="_blank">
-                <img src="<?= $thumbnailUrl ?>">
+                <div class="img-area ar-4-3">
+                    <img <?php if ($fallback) { ?>class="placeholder"<?php } ?> src="<?= $thumbnailUrl ?>">
+                </div>
                 <h2><?= $video['Title'] ?></h2>
             </a>
         </article>
