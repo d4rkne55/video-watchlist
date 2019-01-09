@@ -16,6 +16,11 @@ class Scraper
                 $this->parser = 'Youtube';
                 $this->url = 'https://www.youtube.com/watch?v=' . ltrim($url->path, '/');
                 break;
+            case 'm.youtube.com':
+                $this->parser = 'Youtube';
+                $this->url = str_replace('m.youtube', 'www.youtube', $url->getBaseUrl());
+                $this->url .= '?v=' . (string) $url->query->v;
+                break;
             case 'www.youtube.com':
                 $this->parser = 'Youtube';
                 $this->url = $url->getBaseUrl();
@@ -34,6 +39,8 @@ class Scraper
 
         if ($statusCode >= 400) {
             throw new RuntimeException('', $statusCode);
+        } elseif (empty($this->html)) {
+            throw new RuntimeException('Empty response given.');
         }
     }
 
